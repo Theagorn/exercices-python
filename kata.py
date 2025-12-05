@@ -263,10 +263,58 @@ operation(-30)
 try:
     operation(-100)
 except ValueError:
-    print("pas assez d'argent")
+    print("pas assez de sous")
 
 #print(compte)
 # print la valeur de "compte" après les deux appels de la fonction "operation"
 
 #----------------------------fin du 4ème kata---------------------------
+
+cmd = {
+    "client": "bob",
+    "products": [
+        {"product": "apple", "unit_price": 1, "qt": 5},
+        {"product": "sausage", "unit_price": 16.4, "qt": 72},
+        {"product": "water in plastic bottle", "unit_price": 0.75, "qt": 12},
+        {"product": "macbook pro", "unit_price": 2000.99, "qt": 1},
+        {"product": "paper", "unit_price": 2, "qt": 3},
+    ]
+}
+
+cmd2 = {
+    "client": "John Wish",
+    "products": [
+        {"product": "gros flingue", "unit_price": 1, "qt": 100},
+        {"product": "grosse voiture", "unit_price": 1, "qt": 1},
+        {"product": "petit chien", "unit_price": 1000, "qt": 0},
+        {"product": "plus gros flingues", "unit_price": 2, "qt": 10},
+        {"product": "costume blindé", "unit_price": 1, "qt": 3},
+				{"product": "alcool divers", "unit_price": 12.5, "qt": 5}
+    ]
+}
+
+total = 0.0
+
+for item in cmd2["products"]:
+    if len(item["product"])%2 == 0:
+        item["unit_price"] *= 0.83
+
+    if item["product"][0] == "a" or item["product"][0] == "p":
+        total += item["unit_price"] * item["qt"] * 1.055
+    else:
+        total += item["unit_price"] * item["qt"] * 1.2
+
+# total *= 1.2  # ajout d'une TVA de 20%
+#print(total)
+
+#----------------------------fin du 5ème kata---------------------------
+
+f = [a + b for a in string.ascii_lowercase for b in string.ascii_lowercase]
+g = [a + b + c for a in string.ascii_lowercase for b in string.ascii_lowercase for c in string.ascii_lowercase]
+h = {key: random.randint(1,12) for key in g}
+
+# print(h)
+# print(sum(h.values())/len(h))
+
+#----------------------------fin du 6ème kata---------------------------
 
