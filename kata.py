@@ -461,6 +461,7 @@ scale = 0.5
 img = Image.new("RGB", (img_width, img_height), "#ffffff")
 
 for i, row in enumerate(tableau_trié.itertuples()):
+    # print(i, row)
     color = ImageColor.getcolor(row.color, "RGB")
     length = int(row.duration.total_seconds() / 60 * scale)
     x_start = int(row.time_start.total_seconds() / 60 * scale)
