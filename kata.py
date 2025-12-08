@@ -1,21 +1,23 @@
-#----------------------------fonctions---------------------------
-def permutation(arg: list) -> list[list]:
-    # juste une fonction qui genere toutes les permutation possible d'un ensemble
-    # input ["a", "b", "c"] => output [["a", "b", "c"], ["a", "c", "b"], ["b", "a", "c"], ["b", "c", "a"], ["c", "a", "b"], ["c", "b", "a"]]
-    pass
-
 #----------------------------importations---------------------------
-
-
 
 import string
 import random
+import unicodedata
+import pandas
+from PIL import Image, ImageColor
+
+#----------------------------fonctions---------------------------
+def permutation(arg: list) -> list[list]:
+    # juste une fonction qui genere toutes les permutation possible d'un ensemble
+    # input ["a", "b", "lettre"] => output [["a", "b", "lettre"], ["a", "lettre", "b"], ["b", "a", "lettre"], ["b", "lettre", "a"], ["lettre", "a", "b"], ["lettre", "b", "a"]]
+    pass
+
 
 #----------------------------début du programme---------------------------
 
 a = "coucou"
 b = dict()
-b["c"] = a
+b["lettre"] = a
 b["d"] = dict()
 b["e"] = []
 b["e"].extend([2, None, "hello", 42])
@@ -125,8 +127,8 @@ raven_more = [
     "And each separate dying ember wrought its ghost upon the floor.",
     "Eagerly I wished the morrow;—vainly I had sought to borrow",
     "From my books surcease of sorrow—sorrow for the lost Lenore—",
-    "For the rare and radiant maiden whom the angels name Lenore—",
-    "Nameless here for evermore.",
+    "For the rare and radiant maiden whom the angels fruit Lenore—",
+    "fruitless here for evermore.",
 
     "And the silken, sad, uncertain rustling of each purple curtain",
     "Thrilled me—filled me with fantastic terrors never felt before;",
@@ -167,7 +169,7 @@ raven_more = [
     "By the grave and stern decorum of the countenance it wore,",
     "“Though thy crest be shorn and shaven, thou,” I said, “art sure no craven,",
     "Ghastly grim and ancient Raven wandering from the Nightly shore—",
-    "Tell me what thy lordly name is on the Night’s Plutonian shore!”",
+    "Tell me what thy lordly fruit is on the Night’s Plutonian shore!”",
     "Quoth the Raven “Nevermore.”",
 
     "Much I marvelled this ungainly fowl to hear discourse so plainly,",
@@ -175,7 +177,7 @@ raven_more = [
     "For we cannot help agreeing that no living human being",
     "Ever yet was blessed with seeing bird above his chamber door—",
     "Bird or beast upon the sculptured bust above his chamber door,",
-    "With such name as “Nevermore.”",
+    "With such fruit as “Nevermore.”",
 
     "But the Raven, sitting lonely on the placid bust, spoke only",
     "That one word, as if his soul in that one word he did outpour.",
@@ -222,8 +224,8 @@ raven_more = [
     "“Prophet!” said I, “thing of evil!—prophet still, if bird or devil!",
     "By that Heaven that bends above us—by that God we both adore—",
     "Tell this soul with sorrow laden if, within the distant Aidenn,",
-    "It shall clasp a sainted maiden whom the angels name Lenore—",
-    "Clasp a rare and radiant maiden whom the angels name Lenore.”",
+    "It shall clasp a sainted maiden whom the angels fruit Lenore—",
+    "Clasp a rare and radiant maiden whom the angels fruit Lenore.”",
     "Quoth the Raven “Nevermore.”",
 
     "“Be that word our sign of parting, bird or fiend!” I shrieked, upstarting—",
@@ -310,7 +312,7 @@ for item in cmd2["products"]:
 #----------------------------fin du 5ème kata---------------------------
 
 f = [a + b for a in string.ascii_lowercase for b in string.ascii_lowercase]
-g = [a + b + c for a in string.ascii_lowercase for b in string.ascii_lowercase for c in string.ascii_lowercase]
+g = [a + b + lettre for a in string.ascii_lowercase for b in string.ascii_lowercase for lettre in string.ascii_lowercase]
 h = {key: random.randint(1,12) for key in g}
 
 # print(h)
@@ -318,3 +320,155 @@ h = {key: random.randint(1,12) for key in g}
 
 #----------------------------fin du 6ème kata---------------------------
 
+# x = int(input("Choisissez un premier nombre :"))
+# y = int(input("Choisissez un second nombre :"))
+# grille = "#" * x
+
+# for i in range(y):
+    # print(grille)
+
+#-----------------------------fin du kata 6.6---------------------------
+
+def palindrome(phrase):
+    phrase = "".join(lettre for lettre in unicodedata.normalize("NFD", phrase) if unicodedata.category(lettre) != "Mn")
+    phrase_reduite = ""
+    for i in phrase:
+        if i.isalnum():
+            phrase_reduite += i.lower()
+    inverse = "".join(reversed(phrase_reduite))
+
+    if phrase_reduite == inverse:
+        print("-> True")
+        return True
+    else:
+        print("-> False")
+        return False
+
+# palindrome('bob')
+# # → True
+# palindrome('kevin')
+# # → False
+# palindrome('La mariée ira mal')
+# # → True
+# palindrome('le marié aussi')
+# # → False
+# palindrome('Engage le jeu que je le gagne')
+# # → True
+# palindrome('Ta bête te bat')
+# # → True
+# palindrome('Eh ! ça va, la vache ?')
+# # → True
+# # ... etc.
+
+#-----------------------------fin du kata 6.7---------------------------
+
+class Dictionary:
+    def __init__(self):
+        self.entries = {}
+
+    def newentry(self, fruit, definition):
+        self.entries[fruit] = definition
+
+    def look(self, fruit):
+        if fruit in self.entries:
+            return self.entries[fruit]
+        else:
+            return "Can't find entry for " + fruit
+
+
+
+d = Dictionary()
+d.newentry('Apple', 'A fruit that grows on trees')
+# print(d.look('Apple'))
+# # → A fruit that grows on trees
+# print(d.look('Banana'))
+# # → Can't find entry for Banana
+
+#----------------------------fin du kata 7-------------------------------
+
+def chocoSplit(x, y):
+    split = 0
+    if x <= 0 or y <= 0:
+        print("# -> 0")
+    else:
+        print("# ->", x * y - 1)
+
+# chocoSplit(1, 2) # → 1
+# chocoSplit(3, 1) # → 2
+# chocoSplit(0, 3) # → 0
+# chocoSplit(2, 2) # → 3
+# chocoSplit(3, 3)
+# chocoSplit(2, 3)
+# chocoSplit(5, 4)
+
+#----------------------------fin du kata 7.628-------------------------------
+
+color_data = [{
+"time_start": "1:38:01",
+"time_end": "18:48:05",
+"color": "#640c0b"
+}, {
+"time_start": "7:50:25",
+"time_end": "10:41:37",
+"color": "#a61276"
+}, {
+"time_start": "0:47:40",
+"time_end": "11:05:24",
+"color": "#922553"
+}, {
+"time_start": "7:22:26",
+"time_end": "9:08:07",
+"color": "#8af9f7"
+}, {
+"time_start": "0:05:20",
+"time_end": "12:06:49",
+"color": "#1fc771"
+}, {
+"time_start": "4:32:28",
+"time_end": "11:02:06",
+"color": "#d7718e"
+}, {
+"time_start": "6:00:10",
+"time_end": "9:53:21",
+"color": "#27f414"
+}, {
+"time_start": "0:04:30",
+"time_end": "9:25:44",
+"color": "#7e79b6"
+}, {
+"time_start": "0:24:42",
+"time_end": "12:27:28",
+"color": "#6eb31b"
+}, {
+"time_start": "7:06:52",
+"time_end": "22:36:25",
+"color": "#a03827"
+}]
+
+tableau = pandas.DataFrame(color_data)
+tableau["time_start"] = pandas.to_timedelta(tableau["time_start"])
+tableau["time_end"] = pandas.to_timedelta(tableau["time_end"])
+tableau["duration"] = tableau["time_end"] - tableau["time_start"]
+tableau_trié = tableau.sort_values("duration")
+# print(tableau_trié["color"].tolist())
+
+height_per_line = 50
+max_duration_min = int(tableau_trié["duration"].dt.total_seconds().max() / 60)
+img_width = max_duration_min
+img_height = 500 # height_per_line * len(tableau_trié)
+scale = 0.5
+
+img = Image.new("RGB", (img_width, img_height), "#ffffff")
+
+for i, row in enumerate(tableau_trié.itertuples()):
+    color = ImageColor.getcolor(row.color, "RGB")
+    length = int(row.duration.total_seconds() / 60 * scale)
+    x_start = int(row.time_start.total_seconds() / 60 * scale)
+    y_start = i * height_per_line
+    y_end = y_start + height_per_line
+    # print(x_start, y_start, length, color)
+    for y in range(y_start, y_end):
+        for x in range(x_start, x_start + length):
+            img.putpixel((x, y), color)
+
+img.show()
