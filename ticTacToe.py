@@ -27,7 +27,7 @@ def afficher_grille():
         print(i)
 
 def tour(player):
-    saisie = int(input("Choisissez une case à remplir (1-9): "))
+    saisie = int(input("Choisissez une case à remplir (1  -9): "))
     ligne = (saisie - 1) // 3
     colonne = (saisie - 1) % 3
     # print(ligne, colonne)
@@ -36,7 +36,7 @@ def tour(player):
         player = player_O if player == player_X else player_X
         return player
     else:
-        print("Case déjà prise, choisissez-en une autre")
+        print("Cette case est déjà prise, choisissez-en une autre")
         return player
 
 def check_winner():
