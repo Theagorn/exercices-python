@@ -63,7 +63,7 @@ def check_winner():
 
 # afficher_grille()
 while winner is None:
-    print("--------------------------------------------\nAu tour du joueur", first)
+    print("---------------------------------------------\nAu tour du joueur", first)
     afficher_grille()
     first = tour(first)
     winner = check_winner()
